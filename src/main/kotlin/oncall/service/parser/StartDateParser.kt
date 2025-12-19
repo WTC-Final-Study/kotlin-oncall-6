@@ -1,4 +1,4 @@
-package oncall.service
+package oncall.service.parser
 
 import oncall.model.StartDate
 import java.time.DayOfWeek

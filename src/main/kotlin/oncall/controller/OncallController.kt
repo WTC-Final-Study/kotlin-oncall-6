@@ -2,14 +2,16 @@ package oncall.controller
 
 import oncall.message.InputMessage
 import oncall.model.StartDate
-import oncall.service.StartDateParser
-import oncall.validator.InputValidator
+import oncall.model.WorkType
+import oncall.service.parser.StartDateParser
+import oncall.service.parser.TurnParser
+import oncall.util.validator.InputValidator
 import oncall.view.InputView
 
 class OncallController {
     fun run() {
         val startDate = inputMonthAndWeekday()
-        inputWorkTurn()
+        val workTurn = inputWorkTurn()
     }
 
     private fun inputMonthAndWeekday(): StartDate {
@@ -25,11 +27,14 @@ class OncallController {
         }
     }
 
-    private fun inputWorkTurn(){
+    private fun inputWorkTurn(): Map<WorkType, List<String>>{
         while (true) {
             try {
-                val inputTurn = InputView.inputValue(InputMessage.WEEKDAY_TURN.toString())
-                InputValidator.validateWorkTurn(inputTurn)
+                val inputWeekdayTurn = InputView.inputValue(InputMessage.WEEKDAY_TURN.toString())
+                InputValidator.validateWorkTurn(inputWeekdayTurn)
+                val inputHolidayTurn = InputView.inputValue(InputMessage.HOLIDAY_TURN.toString())
+                InputValidator.validateWorkTurn(inputHolidayTurn)
+                return TurnParser.parserTurn(inputWeekdayTurn, inputHolidayTurn)
             }catch (e: IllegalArgumentException){
                 println(e.message)
             }

@@ -1,4 +1,4 @@
-package oncall.validator
+package oncall.util.validator
 
 import oncall.message.ErrorMessage
 
