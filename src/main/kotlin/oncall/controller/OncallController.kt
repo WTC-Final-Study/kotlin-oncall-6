@@ -3,6 +3,7 @@ package oncall.controller
 import oncall.message.InputMessage
 import oncall.model.StartDate
 import oncall.model.WorkType
+import oncall.service.manager.CalendarManager
 import oncall.service.parser.StartDateParser
 import oncall.service.parser.TurnParser
 import oncall.util.validator.InputValidator
@@ -12,6 +13,7 @@ class OncallController {
     fun run() {
         val startDate = inputMonthAndWeekday()
         val workTurn = inputWorkTurn()
+        val calendar = CalendarManager.generateCalendar(startDate)
     }
 
     private fun inputMonthAndWeekday(): StartDate {
