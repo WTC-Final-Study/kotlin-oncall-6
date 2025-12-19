@@ -15,12 +15,7 @@ object CalendarManager {
         for (day in 1..days) {
             val isHoliday = holidays.contains(day) ||
                     (dayOfWeek == DayOfWeek.SATURDAY || dayOfWeek == DayOfWeek.SUNDAY)
-            val day = Day(
-                month = month,
-                day = day,
-                dayOfWeek = dayOfWeek,
-                isHoliday = isHoliday
-            )
+            val day = Day(month = month, day = day, dayOfWeek = dayOfWeek, isHoliday = isHoliday)
             dayOfWeek = dayOfWeek.plus(1)
             calendar.add(day)
         }
