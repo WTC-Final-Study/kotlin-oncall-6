@@ -10,6 +10,7 @@ import oncall.service.parser.StartDateParser
 import oncall.service.parser.TurnParser
 import oncall.util.validator.InputValidator
 import oncall.view.InputView
+import oncall.view.OutputView
 
 class OncallController {
     fun run() {
@@ -17,6 +18,7 @@ class OncallController {
         val workTurn = inputWorkTurn()
         val calendar = CalendarManager.generateCalendar(startDate)
         val schedule = ScheduleManager.generateSchedule(calendar, workTurn)
+        OutputView.printSchedule(schedule)
     }
 
     private fun inputMonthAndWeekday(): StartDate {
@@ -27,7 +29,7 @@ class OncallController {
                 val startDate = StartDateParser.parse(input)
                 return startDate
             } catch (e: IllegalArgumentException) {
-                println(e.message)
+                println(ErrorMessage.INVALID_FORMAT.toString())
             }
         }
     }

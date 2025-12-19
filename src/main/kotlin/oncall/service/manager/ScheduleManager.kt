@@ -19,13 +19,13 @@ object ScheduleManager {
                 WorkType.WEEKDAY -> {
                     var behind = 1
                     val size = weekdayTurn.size
-                    while (yesterdayWorker == weekdayTurn[currentWeekdayIndex]) {
+                    while (yesterdayWorker == weekdayTurn[currentWeekdayIndex % size]) {
                         val tmp = weekdayTurn[currentWeekdayIndex % size]
                         weekdayTurn[currentWeekdayIndex % size ] = weekdayTurn[(currentWeekdayIndex + behind) % size]
                         weekdayTurn[(currentWeekdayIndex + behind) % size] = tmp
                         behind++
                     }
-                    val name = weekdayTurn[currentWeekdayIndex]
+                    val name = weekdayTurn[currentWeekdayIndex % size]
                     yesterdayWorker = name
                     currentWeekdayIndex++
                     scheduleDay.worker = name
@@ -33,13 +33,13 @@ object ScheduleManager {
                 WorkType.HOLIDAY -> {
                     var behind = 1
                     val size = holidayTurn.size
-                    while (yesterdayWorker == holidayTurn[currentHolidayIndex]) {
+                    while (yesterdayWorker == holidayTurn[currentHolidayIndex % size]) {
                         val tmp = holidayTurn[currentHolidayIndex % size]
                         holidayTurn[currentHolidayIndex % size ] = holidayTurn[(currentHolidayIndex + behind) % size]
                         holidayTurn[(currentHolidayIndex + behind) % size] = tmp
                         behind++
                     }
-                    val name = holidayTurn[currentHolidayIndex]
+                    val name = holidayTurn[currentHolidayIndex % size]
                     yesterdayWorker = name
                     currentHolidayIndex++
                     scheduleDay.worker = name
