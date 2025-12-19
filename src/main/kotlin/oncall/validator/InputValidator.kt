@@ -12,8 +12,18 @@ object InputValidator {
         val month = monthAndWeekday.first().toIntOrNull()
         val weekday = monthAndWeekday.last()
 
-        require(month != null) { ErrorMessage.INVALID_FORMAT.toString() }
-        require(month in 1..12) { ErrorMessage.INVALID_FORMAT.toString() }
-        require(weekdayKR.contains(weekday)) { ErrorMessage.INVALID_FORMAT.toString() }
+        require(month != null)
+        require(month in 1..12)
+        require(weekdayKR.contains(weekday))
+    }
+
+    fun validateWorkTurn(workTurn: String) {
+        require(workTurn.contains(","))
+        val workTurn = workTurn.split(",")
+        require(workTurn.size in 5..35)
+        require(workTurn.size == workTurn.toSet().size)
+        workTurn.forEach { turn ->
+            require(turn.length in 1..5)
+        }
     }
 }
