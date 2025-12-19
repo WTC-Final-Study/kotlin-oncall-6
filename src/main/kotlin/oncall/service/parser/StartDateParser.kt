@@ -7,7 +7,7 @@ object StartDateParser {
 
     fun parse(input: String): StartDate {
         val monthAndWeekday = input.split(",")
-        val weekday = when(monthAndWeekday.last()) {
+        val weekday = when (monthAndWeekday.last()) {
             "월" -> DayOfWeek.MONDAY
             "화" -> DayOfWeek.TUESDAY
             "수" -> DayOfWeek.WEDNESDAY

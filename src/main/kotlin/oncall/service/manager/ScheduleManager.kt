@@ -14,14 +14,14 @@ object ScheduleManager {
         var yesterdayWorker = ""
         calendar.forEach { day ->
             var scheduleDay = day
-            val type = if(day.isHoliday) WorkType.HOLIDAY else WorkType.WEEKDAY
-            when(type) {
+            val type = if (day.isHoliday) WorkType.HOLIDAY else WorkType.WEEKDAY
+            when (type) {
                 WorkType.WEEKDAY -> {
                     var behind = 1
                     val size = weekdayTurn.size
                     while (yesterdayWorker == weekdayTurn[currentWeekdayIndex % size]) {
                         val tmp = weekdayTurn[currentWeekdayIndex % size]
-                        weekdayTurn[currentWeekdayIndex % size ] = weekdayTurn[(currentWeekdayIndex + behind) % size]
+                        weekdayTurn[currentWeekdayIndex % size] = weekdayTurn[(currentWeekdayIndex + behind) % size]
                         weekdayTurn[(currentWeekdayIndex + behind) % size] = tmp
                         behind++
                     }
@@ -30,12 +30,13 @@ object ScheduleManager {
                     currentWeekdayIndex++
                     scheduleDay.worker = name
                 }
+
                 WorkType.HOLIDAY -> {
                     var behind = 1
                     val size = holidayTurn.size
                     while (yesterdayWorker == holidayTurn[currentHolidayIndex % size]) {
                         val tmp = holidayTurn[currentHolidayIndex % size]
-                        holidayTurn[currentHolidayIndex % size ] = holidayTurn[(currentHolidayIndex + behind) % size]
+                        holidayTurn[currentHolidayIndex % size] = holidayTurn[(currentHolidayIndex + behind) % size]
                         holidayTurn[(currentHolidayIndex + behind) % size] = tmp
                         behind++
                     }

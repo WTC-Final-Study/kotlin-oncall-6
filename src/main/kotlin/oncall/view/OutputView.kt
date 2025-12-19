@@ -7,7 +7,7 @@ object OutputView {
 
     fun printSchedule(schedule: List<Day>) {
         schedule.forEach { day ->
-            val holiday = if(isPrintHoliday(day)) "(휴일)" else ""
+            val holiday = if (isPrintHoliday(day)) "(휴일)" else ""
             val dayOfWeekKr = printDayOfWeekKR(day.dayOfWeek)
             println("${day.month}월 ${day.day}일 $dayOfWeekKr$holiday ${day.worker}")
         }

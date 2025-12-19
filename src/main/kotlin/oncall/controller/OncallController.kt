@@ -34,7 +34,7 @@ class OncallController {
         }
     }
 
-    private fun inputWorkTurn(): Map<WorkType, List<String>>{
+    private fun inputWorkTurn(): Map<WorkType, List<String>> {
         while (true) {
             try {
                 val inputWeekdayTurn = InputView.inputValue(InputMessage.WEEKDAY_TURN.toString())
@@ -42,7 +42,7 @@ class OncallController {
                 val inputHolidayTurn = InputView.inputValue(InputMessage.HOLIDAY_TURN.toString())
                 InputValidator.validateWorkTurn(inputHolidayTurn)
                 return TurnParser.parserTurn(inputWeekdayTurn, inputHolidayTurn)
-            }catch (e: IllegalArgumentException){
+            } catch (e: IllegalArgumentException) {
                 println(ErrorMessage.INVALID_FORMAT.toString())
             }
         }
