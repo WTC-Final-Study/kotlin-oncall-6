@@ -1,9 +1,11 @@
 package oncall.controller
 
+import oncall.message.ErrorMessage
 import oncall.message.InputMessage
 import oncall.model.StartDate
 import oncall.model.WorkType
 import oncall.service.manager.CalendarManager
+import oncall.service.manager.ScheduleManager
 import oncall.service.parser.StartDateParser
 import oncall.service.parser.TurnParser
 import oncall.util.validator.InputValidator
@@ -14,6 +16,7 @@ class OncallController {
         val startDate = inputMonthAndWeekday()
         val workTurn = inputWorkTurn()
         val calendar = CalendarManager.generateCalendar(startDate)
+        val schedule = ScheduleManager.generateSchedule(calendar, workTurn)
     }
 
     private fun inputMonthAndWeekday(): StartDate {
@@ -38,7 +41,7 @@ class OncallController {
                 InputValidator.validateWorkTurn(inputHolidayTurn)
                 return TurnParser.parserTurn(inputWeekdayTurn, inputHolidayTurn)
             }catch (e: IllegalArgumentException){
-                println(e.message)
+                println(ErrorMessage.INVALID_FORMAT.toString())
             }
         }
     }

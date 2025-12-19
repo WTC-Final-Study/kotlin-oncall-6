@@ -7,5 +7,5 @@ data class Day(
     val day: Int,
     val dayOfWeek: DayOfWeek,
     val isHoliday: Boolean,
-    val worker: String = ""
+    var worker: String = ""
 )
