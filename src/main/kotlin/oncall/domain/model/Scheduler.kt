@@ -43,7 +43,7 @@ class Scheduler(
 
     private fun createQue(order: List<String>): ArrayDeque<String> {
         val que = ArrayDeque<String>()
-        val times = calendar.lengthOrMonth / order.size
+        val times = calendar.lengthOrMonth / order.size + 1
         repeat(times) {
             que.addAll(order)
         }
@@ -58,5 +58,4 @@ class Scheduler(
     private fun isHoliday(date: Int): Boolean {
         return calendar.onWeekend(date) || PublicHoliday.onHoliday(calendar.month, date)
     }
-
 }

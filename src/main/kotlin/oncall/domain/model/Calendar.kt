@@ -33,12 +33,12 @@ class Calendar(
     }
 
     fun dayOfWeek(date: Int): String {
-        val diff = startDate.date - date
+        val diff = date - startDate.date
         return dayOfWeek[diff % 7]
     }
 
     fun onWeekend(date: Int): Boolean {
-        val diff = startDate.date - date
+        val diff = date - startDate.date
         val dayOfWeek = dayOfWeek[diff % 7]
         return dayOfWeek == "토" || dayOfWeek == "일"
     }
