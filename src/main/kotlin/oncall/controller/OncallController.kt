@@ -1,6 +1,7 @@
 package oncall.controller
 
 import oncall.message.InputMessage
+import oncall.util.InputValidator
 import oncall.view.InputView
 
 class OncallController {
@@ -10,6 +11,13 @@ class OncallController {
     }
 
     private fun inputStartInfo() {
-        val input = InputView.input(InputMessage.START_INFO.toString())
+        while (true) {
+            try {
+                val input = InputView.input(InputMessage.START_INFO.toString())
+                InputValidator.validateStartInfo(input)
+            } catch (e: IllegalArgumentException) {
+                println(e.message)
+            }
+        }
     }
 }
