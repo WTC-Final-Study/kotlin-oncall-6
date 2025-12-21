@@ -1,6 +1,6 @@
 package oncall.controller
 
-import oncall.message.InputMessage
+import oncall.constant.message.InputMessage
 import oncall.model.Day
 import oncall.model.StartInfo
 import oncall.model.WorkList

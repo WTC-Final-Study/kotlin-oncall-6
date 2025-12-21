@@ -1,6 +1,6 @@
 package oncall.util
 
-import oncall.message.ErrorMessage
+import oncall.constant.message.ErrorMessage
 
 object InputValidator {
 
