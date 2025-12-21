@@ -21,7 +21,7 @@ class CalendarManager {
                 worker = ""
             )
             calendar[i] = day
-            dayOfWeekCounter++
+            dayOfWeekCounter = (dayOfWeekCounter + 1) % 7
         }
     }
 

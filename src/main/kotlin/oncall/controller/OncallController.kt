@@ -10,6 +10,7 @@ import oncall.service.StartInfoConverter
 import oncall.service.WorkListConverter
 import oncall.util.InputValidator
 import oncall.view.InputView
+import oncall.view.OutputView
 
 class OncallController {
 
@@ -19,6 +20,11 @@ class OncallController {
         val calendarManager = CalendarManager()
         calendarManager.generateCalendar(startInfo)
         generateSchedule(calendarManager.getCalendar(), workList)
+        OutputView.printSchedule(
+            calendar = calendarManager.getCalendar(),
+            schedule = ScheduleManager.getSchedule(),
+            startInfo = startInfo
+        )
     }
 
     private fun inputStartInfo(): StartInfo {
