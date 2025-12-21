@@ -1,6 +1,6 @@
 package oncall.view
 
-import oncall.message.OutputMessage
+import oncall.constant.message.OutputMessage
 import oncall.model.Day
 import oncall.model.StartInfo
 
