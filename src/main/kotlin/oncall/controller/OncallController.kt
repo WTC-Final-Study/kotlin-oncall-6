@@ -28,6 +28,20 @@ class OncallController {
         return StartInfoConverter.convert(input)
     }
 
+    private fun inputWorkList() {
+        while (true) {
+            try {
+                val weekdayList = inputWeekdayList()
+                InputValidator.validateWorkList(weekdayList)
+                val holidayList = inputHolidayList()
+                InputValidator.validateWorkList(holidayList)
+            }catch (e: IllegalArgumentException) {
+                println(e.message)
+            }
+        }
+
+    }
+
     private fun inputWeekdayList(): String {
         return InputView.input(InputMessage.WEEKDAY_LIST.toString())
     }
