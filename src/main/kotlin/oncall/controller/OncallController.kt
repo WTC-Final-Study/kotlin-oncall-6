@@ -1,9 +1,11 @@
 package oncall.controller
 
 import oncall.message.InputMessage
+import oncall.model.Day
 import oncall.model.StartInfo
 import oncall.model.WorkList
 import oncall.service.CalendarManager
+import oncall.service.ScheduleManager
 import oncall.service.StartInfoConverter
 import oncall.service.WorkListConverter
 import oncall.util.InputValidator
@@ -16,6 +18,7 @@ class OncallController {
         val workList = inputWorkList()
         val calendarManager = CalendarManager()
         calendarManager.generateCalendar(startInfo)
+        generateSchedule(calendarManager.getCalendar(), workList)
     }
 
     private fun inputStartInfo(): StartInfo {
@@ -62,5 +65,10 @@ class OncallController {
     private fun workListConvert(weekdayList: String,
                                 holidayList: String): WorkList{
         return WorkListConverter.convert(weekdayList, holidayList)
+    }
+
+    private fun generateSchedule(calendar: MutableMap<Int, Day>,
+                                 workList: WorkList) {
+        ScheduleManager.generateSchedule(calendar, workList)
     }
 }
