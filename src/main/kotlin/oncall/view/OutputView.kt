@@ -15,14 +15,14 @@ object OutputView {
         val month = startInfo.month
         calendar.forEach { day, value ->
             val holiday = printHoliday(value)
-            val dayOfWeek = DayOfWeek.getTextById(value.dayOfWeek)
+            val dayOfWeek = value.dayOfWeek.text
             val worker = schedule[day]
             println("${month}월 ${day}일 $dayOfWeek$holiday $worker")
         }
     }
 
     private fun printHoliday(day: Day): String {
-        return if (day.isHoliday && (day.dayOfWeek in 0..4)) OutputMessage.HOLIDAY.toString()
+        return if (day.isHoliday && (day.dayOfWeek.id in 0..4)) OutputMessage.HOLIDAY.toString()
         else ""
     }
 }

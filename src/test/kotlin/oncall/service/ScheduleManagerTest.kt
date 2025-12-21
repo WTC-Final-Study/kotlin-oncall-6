@@ -1,5 +1,6 @@
 package oncall.service
 
+import oncall.constant.DayOfWeek
 import oncall.model.StartInfo
 import oncall.model.WorkList
 import org.junit.jupiter.api.BeforeEach
@@ -19,7 +20,7 @@ class ScheduleManagerTest {
         assertDoesNotThrow {
             val startInfo = StartInfo(
                 month = 5,
-                dayOfWeek = 0
+                dayOfWeek = DayOfWeek.MONDAY
             )
 
             CalendarManager.generateCalendar(startInfo)

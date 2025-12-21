@@ -1,5 +1,6 @@
 package oncall.service
 
+import oncall.constant.DayOfWeek
 import oncall.model.StartInfo
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
@@ -12,7 +13,7 @@ class StartInfoConverterTest {
         val startInfo = StartInfoConverter.convert(input)
         val expected = StartInfo(
             month = 12,
-            dayOfWeek = 1
+            dayOfWeek = DayOfWeek.TUESDAY
         )
 
         assertEquals(startInfo, expected)

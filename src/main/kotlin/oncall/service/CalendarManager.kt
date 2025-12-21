@@ -1,5 +1,6 @@
 package oncall.service
 
+import oncall.constant.DayOfWeek
 import oncall.model.Day
 import oncall.model.StartInfo
 
@@ -16,11 +17,11 @@ object CalendarManager {
         for (i in 1..maxDayInMonth) {
             val day = Day(
                 day = i,
-                isHoliday = isHoliday(publicHolidayInMonth, dayOfWeekCounter, i),
+                isHoliday = isHoliday(publicHolidayInMonth, dayOfWeekCounter.id, i),
                 dayOfWeek = dayOfWeekCounter
             )
             calendar[i] = day
-            dayOfWeekCounter = (dayOfWeekCounter + 1) % 7
+            dayOfWeekCounter = DayOfWeek.getDayOfWeekById((dayOfWeekCounter.id + 1) % 7)!!
         }
     }
 
