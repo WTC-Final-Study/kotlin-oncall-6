@@ -1,6 +1,6 @@
 package oncall.domain.model
 
-object Holiday {
+object PublicHoliday {
     private val holidays = listOf(
         Date(1, 1),
         Date(3, 1),
