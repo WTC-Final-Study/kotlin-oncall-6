@@ -2,10 +2,17 @@ package oncall.service
 
 import oncall.model.StartInfo
 import oncall.model.WorkList
+import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertDoesNotThrow
 
 class ScheduleManagerTest {
+
+    @BeforeEach
+    fun reset() {
+        ScheduleManager.currentHolidayIndex = 0
+        ScheduleManager.currentWeekdayIndex = 0
+    }
 
     @Test
     fun `스케줄 생성`() {

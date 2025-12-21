@@ -3,10 +3,17 @@ package oncall
 import camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest
 import camp.nextstep.edu.missionutils.test.NsTest
 import oncall.constant.DayOfWeek
+import oncall.service.ScheduleManager
 import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
 class ApplicationTest : NsTest() {
+    @BeforeEach
+    fun Setup() {
+        ScheduleManager.currentHolidayIndex = 0
+        ScheduleManager.currentWeekdayIndex = 0
+    }
     @Test
     fun `예외 테스트`() {
         assertSimpleTest {
