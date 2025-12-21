@@ -3,6 +3,7 @@ package oncall.controller
 import oncall.message.InputMessage
 import oncall.model.StartInfo
 import oncall.model.WorkList
+import oncall.service.CalendarManager
 import oncall.service.StartInfoConverter
 import oncall.service.WorkListConverter
 import oncall.util.InputValidator
@@ -13,6 +14,8 @@ class OncallController {
     fun run() {
         val startInfo = inputStartInfo()
         val workList = inputWorkList()
+        val calendarManager = CalendarManager()
+        calendarManager.generateCalendar(startInfo)
     }
 
     private fun inputStartInfo(): StartInfo {
