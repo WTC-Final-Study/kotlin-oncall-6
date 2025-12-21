@@ -24,7 +24,7 @@ class CalendarManagerTest {
             worker = ""
         )
         calendarManager.getCalendar().forEach { calendar ->
-            println(calendar.value.dayOfWeek)
+            println(calendar.value)
         }
         assertEquals(calendar, childDay)
     }

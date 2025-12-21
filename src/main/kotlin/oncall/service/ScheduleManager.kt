@@ -17,11 +17,11 @@ object ScheduleManager {
         var weekdayList = workList.weekday
         calendar.forEach { day, value ->
             if (value.isHoliday) {
-                holidayList = pickWorker(holidayList, currentHolidayIndex, day)
-                currentHolidayIndex = (currentHolidayIndex + 1) % (holidayList.size - 1)
+                pickWorker(holidayList, currentHolidayIndex, day)
+                currentHolidayIndex = (currentHolidayIndex + 1) % (holidayList.size)
             } else {
-                weekdayList = pickWorker(weekdayList, currentWeekdayIndex, day)
-                currentWeekdayIndex = (currentWeekdayIndex + 1) % (weekdayList.size - 1)
+                pickWorker(weekdayList, currentWeekdayIndex, day)
+                currentWeekdayIndex = (currentWeekdayIndex + 1) % (weekdayList.size)
             }
         }
     }

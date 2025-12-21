@@ -31,7 +31,7 @@ class CalendarManager {
         day: Int
     ): Boolean {
         return publicHolidayInMonth.contains(day) ||
-                (dayOfWeek == 5 || dayOfWeek == 6)
+                dayOfWeek in 5..6
     }
 
     private fun getMaxDayInMonth(month: Int): Int {
