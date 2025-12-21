@@ -17,8 +17,7 @@ object CalendarManager {
             val day = Day(
                 day = i,
                 isHoliday = isHoliday(publicHolidayInMonth, dayOfWeekCounter, i),
-                dayOfWeek = dayOfWeekCounter,
-                worker = ""
+                dayOfWeek = dayOfWeekCounter
             )
             calendar[i] = day
             dayOfWeekCounter = (dayOfWeekCounter + 1) % 7

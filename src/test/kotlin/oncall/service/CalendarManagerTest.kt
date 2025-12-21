@@ -2,7 +2,6 @@ package oncall.service
 
 import oncall.model.Day
 import oncall.model.StartInfo
-import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
@@ -19,8 +18,7 @@ class CalendarManagerTest {
         val childDay = Day(
             day = 5,
             isHoliday = true,
-            dayOfWeek = 4,
-            worker = ""
+            dayOfWeek = 4
         )
         CalendarManager.getCalendar().forEach { calendar ->
             println(calendar.value)

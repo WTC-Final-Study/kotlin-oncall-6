@@ -4,5 +4,4 @@ data class Day(
     val day: Int,
     val isHoliday: Boolean,
     val dayOfWeek: Int,
-    val worker: String?
 )

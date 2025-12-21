@@ -1,5 +1,6 @@
 package oncall.view
 
+import oncall.message.OutputMessage
 import oncall.model.Day
 import oncall.model.StartInfo
 
@@ -20,7 +21,7 @@ object OutputView {
     }
 
     private fun printHoliday(day: Day): String {
-        return if (day.isHoliday && (day.dayOfWeek in 0..4)) "(휴일)"
+        return if (day.isHoliday && (day.dayOfWeek in 0..4)) OutputMessage.HOLIDAY.toString()
         else ""
     }
 
