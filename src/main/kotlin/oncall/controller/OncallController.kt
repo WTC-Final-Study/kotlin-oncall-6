@@ -52,8 +52,9 @@ class OncallController {
                 InputValidator.validateWorkList(holidayList)
                 return workListConvert(
                     weekdayList = weekdayList,
-                    holidayList = holidayList)
-            }catch (e: IllegalArgumentException) {
+                    holidayList = holidayList
+                )
+            } catch (e: IllegalArgumentException) {
                 println(e.message)
             }
         }
@@ -68,13 +69,17 @@ class OncallController {
         return InputView.input(InputMessage.HOLIDAY_LIST.toString())
     }
 
-    private fun workListConvert(weekdayList: String,
-                                holidayList: String): WorkList{
+    private fun workListConvert(
+        weekdayList: String,
+        holidayList: String
+    ): WorkList {
         return WorkListConverter.convert(weekdayList, holidayList)
     }
 
-    private fun generateSchedule(calendar: MutableMap<Int, Day>,
-                                 workList: WorkList) {
+    private fun generateSchedule(
+        calendar: MutableMap<Int, Day>,
+        workList: WorkList
+    ) {
         ScheduleManager.generateSchedule(calendar, workList)
     }
 }

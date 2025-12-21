@@ -33,7 +33,7 @@ object ScheduleManager {
     ): MutableList<String> {
         var swapIndexCount = 1
         while (true) {
-            if(!isSameWorkerYesterday(workList[index], day)) break
+            if (!isSameWorkerYesterday(workList[index], day)) break
             val swapTarget = workList[index]
             val swapIndex = (index + swapIndexCount) % (workList.size - 1)
             workList[index] = workList[swapIndex]
