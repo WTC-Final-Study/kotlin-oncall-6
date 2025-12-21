@@ -2,7 +2,9 @@ package oncall.controller
 
 import oncall.message.InputMessage
 import oncall.model.StartInfo
+import oncall.model.WorkList
 import oncall.service.StartInfoConverter
+import oncall.service.WorkListConverter
 import oncall.util.InputValidator
 import oncall.view.InputView
 
@@ -10,6 +12,7 @@ class OncallController {
 
     fun run() {
         val startInfo = inputStartInfo()
+        val workList = inputWorkList()
     }
 
     private fun inputStartInfo(): StartInfo {
@@ -28,13 +31,16 @@ class OncallController {
         return StartInfoConverter.convert(input)
     }
 
-    private fun inputWorkList() {
+    private fun inputWorkList(): WorkList {
         while (true) {
             try {
                 val weekdayList = inputWeekdayList()
                 InputValidator.validateWorkList(weekdayList)
                 val holidayList = inputHolidayList()
                 InputValidator.validateWorkList(holidayList)
+                return workListConvert(
+                    weekdayList = weekdayList,
+                    holidayList = holidayList)
             }catch (e: IllegalArgumentException) {
                 println(e.message)
             }
@@ -48,5 +54,10 @@ class OncallController {
 
     private fun inputHolidayList(): String {
         return InputView.input(InputMessage.HOLIDAY_LIST.toString())
+    }
+
+    private fun workListConvert(weekdayList: String,
+                                holidayList: String): WorkList{
+        return WorkListConverter.convert(weekdayList, holidayList)
     }
 }
