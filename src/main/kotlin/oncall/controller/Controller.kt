@@ -11,9 +11,9 @@ class Controller {
 
     fun run() {
         val calendar = createCalendar()
-        workService = Scheduler(calendar)
         val (weekdayOrder, weekendOrder) = getOrderOfWork()
-        val schedule = workService.createSchedule(weekdayOrder, weekendOrder)
+        workService = Scheduler(calendar, weekdayOrder, weekendOrder)
+        val schedule = workService.createSchedule()
         OutputView.displaySchedule(schedule)
     }
 

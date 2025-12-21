@@ -1,44 +1,53 @@
 package oncall.domain.model
 
 class Scheduler(
-    val calendar: Calendar
+    val calendar: Calendar,
+    private val weekdayOrder: List<String>,
+    private val weekendOrder: List<String>
 ) {
+    private val weekdayQue = createQue(weekdayOrder)
+    private val weekendQue = createQue(weekendOrder)
 
-    fun createSchedule(
-        weekdayOrder: List<String>,
-        weekendOrder: List<String>
-    ): List<DaySchedule> {
-        val schedule = arrange(weekdayOrder, weekendOrder)
-        return (schedule.indices).map { idx ->
-            DaySchedule(
-                month = calendar.month,
-                date = idx + 1,
-                dayOfWeek = calendar.dayOfWeek(idx + 1),
-                name = schedule[idx]
-            )
+    private val schedule = mutableListOf<DaySchedule>()
+
+    fun createSchedule(): List<DaySchedule> {
+        (1..calendar.lengthOrMonth).forEach { date ->
+            if (isHoliday(date)) addWeekend(date)
+            else addWeekday(date)
+        }
+        return schedule
+    }
+
+
+    private fun addWeekend(date: Int) {
+        if (canAssign(weekendQue.first())) {
+            add(date, weekendQue.removeFirst())
+        } else {
+            val temp = weekendQue.removeFirst()
+            add(date, weekendQue.removeFirst())
+            weekendQue.addFirst(temp)
         }
     }
 
-    private fun arrange(weekdayOrder: List<String>, weekendOrder: List<String>): List<String> {
-        val weekdayQue = createQue(weekdayOrder)
-        val weekendQue = createQue(weekendOrder)
-        val schedule = mutableListOf<String>()
-        (1..calendar.lengthOrMonth).forEach { date ->
-            if (isHoliday(date) && canAssign(schedule, weekendQue.first())) {
-                schedule.add(weekendQue.removeFirst())
-            } else if (isHoliday(date)) {
-                val temp = weekendQue.removeFirst()
-                schedule.add(weekendQue.removeFirst())
-                weekendQue.addFirst(temp)
-            } else if (canAssign(schedule, weekdayQue.first())) {
-                schedule.add(weekdayQue.removeFirst())
-            } else {
-                val temp = weekdayQue.removeFirst()
-                schedule.add(weekdayQue.removeFirst())
-                weekdayQue.addFirst(temp)
-            }
+    private fun addWeekday(date: Int) {
+        if (canAssign(weekdayQue.first())) {
+            add(date, weekdayQue.removeFirst())
+        } else {
+            val temp = weekdayQue.removeFirst()
+            add(date, weekdayQue.removeFirst())
+            weekdayQue.addFirst(temp)
         }
-        return schedule
+    }
+
+    private fun add(date: Int, name: String) {
+        schedule.add(
+            DaySchedule(
+                month = calendar.month,
+                date = date,
+                dayOfWeek = calendar.dayOfWeek(date),
+                name = name
+            )
+        )
     }
 
     private fun createQue(order: List<String>): ArrayDeque<String> {
@@ -50,9 +59,8 @@ class Scheduler(
         return que
     }
 
-
-    fun canAssign(schedule: List<String>, name: String): Boolean {
-        return schedule.isEmpty() || schedule.last() != name
+    fun canAssign(name: String): Boolean {
+        return schedule.isEmpty() || schedule.last().name != name
     }
 
     private fun isHoliday(date: Int): Boolean {
