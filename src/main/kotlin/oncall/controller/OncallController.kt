@@ -27,4 +27,12 @@ class OncallController {
     private fun startInfoConversion(input: String): StartInfo {
         return StartInfoConverter.convert(input)
     }
+
+    private fun inputWeekdayList(): String {
+        return InputView.input(InputMessage.WEEKDAY_LIST.toString())
+    }
+
+    private fun inputHolidayList(): String {
+        return InputView.input(InputMessage.HOLIDAY_LIST.toString())
+    }
 }
