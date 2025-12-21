@@ -14,16 +14,15 @@ class CalendarManagerTest {
             month = 5,
             dayOfWeek = 0
         )
-        val calendarManager = CalendarManager()
-        calendarManager.generateCalendar(startInfo)
-        val calendar = calendarManager.getCalendar().get(5)
+        CalendarManager.generateCalendar(startInfo)
+        val calendar = CalendarManager.getCalendar().get(5)
         val childDay = Day(
             day = 5,
             isHoliday = true,
             dayOfWeek = 4,
             worker = ""
         )
-        calendarManager.getCalendar().forEach { calendar ->
+        CalendarManager.getCalendar().forEach { calendar ->
             println(calendar.value)
         }
         assertEquals(calendar, childDay)

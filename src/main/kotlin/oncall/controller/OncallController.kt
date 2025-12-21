@@ -17,11 +17,10 @@ class OncallController {
     fun run() {
         val startInfo = inputStartInfo()
         val workList = inputWorkList()
-        val calendarManager = CalendarManager()
-        calendarManager.generateCalendar(startInfo)
-        generateSchedule(calendarManager.getCalendar(), workList)
+        CalendarManager.generateCalendar(startInfo)
+        generateSchedule(CalendarManager.getCalendar(), workList)
         OutputView.printSchedule(
-            calendar = calendarManager.getCalendar(),
+            calendar = CalendarManager.getCalendar(),
             schedule = ScheduleManager.getSchedule(),
             startInfo = startInfo
         )

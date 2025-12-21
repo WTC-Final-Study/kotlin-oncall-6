@@ -15,9 +15,8 @@ class ScheduleManagerTest {
                 dayOfWeek = 0
             )
 
-            val calendarManager = CalendarManager()
-            calendarManager.generateCalendar(startInfo)
-            val calendar = calendarManager.getCalendar()
+            CalendarManager.generateCalendar(startInfo)
+            val calendar = CalendarManager.getCalendar()
             val workList = WorkList(
                 "준팍,도밥,고니,수아,루루,글로,솔로스타,우코,슬링키,참새,도리".split(",").toMutableList(),
                 "수아,루루,글로,솔로스타,우코,슬링키,참새,도리,준팍,도밥,고니".split(",").toMutableList()

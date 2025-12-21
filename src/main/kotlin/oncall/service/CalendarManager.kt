@@ -3,7 +3,7 @@ package oncall.service
 import oncall.model.Day
 import oncall.model.StartInfo
 
-class CalendarManager {
+object CalendarManager {
 
     private val calendar = mutableMapOf<Int, Day>()
 
