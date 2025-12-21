@@ -15,7 +15,7 @@ object OutputView {
         val month = startInfo.month
         calendar.forEach { day, value ->
             val holiday = printHoliday(value)
-            val dayOfWeek = DayOfWeek.getText(value.dayOfWeek)
+            val dayOfWeek = DayOfWeek.getTextById(value.dayOfWeek)
             val worker = schedule[day]
             println("${month}월 ${day}일 $dayOfWeek$holiday $worker")
         }

@@ -10,7 +10,7 @@ enum class DayOfWeek(val id: Int, val text: String) {
     SUNDAY(6, "일");
 
     companion object {
-        fun getText(id: Int): String {
+        fun getTextById(id: Int): String {
             return when (id) {
                 0 -> MONDAY.text
                 1 -> TUESDAY.text
@@ -20,6 +20,18 @@ enum class DayOfWeek(val id: Int, val text: String) {
                 5 -> SATURDAY.text
                 6 -> SUNDAY.text
                 else -> ""
+            }
+        }
+
+        fun getIdByText(text: String): Int {
+            return when (text) {
+                MONDAY.text -> MONDAY.id
+                TUESDAY.text -> TUESDAY.id
+                WEDNESDAY.text -> WEDNESDAY.id
+                THURSDAY.text -> THURSDAY.id
+                FRIDAY.text -> FRIDAY.id
+                SATURDAY.text -> SATURDAY.id
+                else -> 0
             }
         }
     }
